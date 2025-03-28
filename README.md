@@ -65,11 +65,11 @@ You can install Postman via this website: https://www.postman.com/downloads/
     -   [x] Commit: `Implement unsubscribe function in Notification controller.`
     -   [x] Write answers of your learning module's "Reflection Publisher-2" questions in this README.
 -   **STAGE 3: Implement notification mechanism**
-    -   [ ] Commit: `Implement update method in Subscriber model to send notification HTTP requests.`
-    -   [ ] Commit: `Implement notify function in Notification service to notify each Subscriber.`
-    -   [ ] Commit: `Implement publish function in Program service and Program controller.`
-    -   [ ] Commit: `Edit Product service methods to call notify after create/delete.`
-    -   [ ] Write answers of your learning module's "Reflection Publisher-3" questions in this README.
+    -   [x] Commit: `Implement update method in Subscriber model to send notification HTTP requests.`
+    -   [x] Commit: `Implement notify function in Notification service to notify each Subscriber.`
+    -   [x] Commit: `Implement publish function in Program service and Program controller.`
+    -   [x] Commit: `Edit Product service methods to call notify after create/delete.`
+    -   [x] Write answers of your learning module's "Reflection Publisher-3" questions in this README.
 
 ## Your Reflections
 This is the place for you to write reflections:
@@ -100,3 +100,11 @@ This is the place for you to write reflections:
 - Postman sangat membantu saya dalam menguji API BambangShop, terutama dalam memastikan fitur subscribe dan unsubscribe berjalan dengan benar. Postman dapat digunakan untuk menguji API melalui berbagai HTTP METHOD, salah dua yang paling familiar untuk saya adalah GET dan POST. Postman telah membantu saya mengerjakan projek - projek IT sebelum ini dan untuk masa depan juga karena praktis dan mudah digunakan.
 
 #### Reflection Publisher-3
+1. Observer Pattern has two variations: Push model (publisher pushes data to subscribers) and Pull model (subscribers pull data from publisher). In this tutorial case, which variation of Observer Pattern that we use?
+- Dalam kasus BambangShop, saya menggunakan Observer Pattern dengan pendekatan Push Model, di mana publisher langsung mengirimkan notifikasi ke subscriber saat ada perubahan, seperti ketika produk baru dibuat atau dipromosikan. Dalam implementasi ini, setiap subscriber menerima data secara otomatis tanpa harus melakukan permintaan ke publisher, yang memastikan informasi sampai ke subscriber dengan cepat dan efisien.
+
+2. What are the advantages and disadvantages of using the other variation of Observer Pattern for this tutorial case? (example: if you answer Q1 with Push, then imagine if we used Pull)
+- Jika saya menggunakan Pull Model, subscriber harus secara aktif meminta data dari publisher untuk mengetahui perubahan yang terjadi. Keuntungan dari pendekatan ini adalah subscriber bisa mengatur sendiri kapan ingin mengambil data, sehingga bisa mengurangi beban server jika tidak semua subscriber membutuhkan notifikasi real-time. Namun, kekurangannya adalah ada kemungkinan subscriber tidak mendapatkan informasi tepat waktu, terutama jika interval polling tidak diatur dengan baik. Dalam kasus BambangShop, penggunaan Pull Model akan membuat subscriber harus terus-menerus mengecek pembaruan, yang tidak efisien dan bisa meningkatkan latensi dalam penyampaian notifikasi.
+
+3. Explain what will happen to the program if we decide to not use multi-threading in the notification process.
+- Jika saya tidak menggunakan multi-threading dalam proses notifikasi, setiap subscriber akan diproses secara berurutan, yang bisa menyebabkan keterlambatan dalam pengiriman notifikasi, terutama jika jumlah subscriber banyak. Dalam BambangShop, tanpa multi-threading, proses update subscriber akan berjalan secara blocking, sehingga satu subscriber harus menunggu proses sebelumnya selesai sebelum mendapatkan notifikasi. Ini bisa menghambat performa aplikasi, terutama jika ada banyak produk yang harus diinformasikan ke banyak subscriber sekaligus. Dengan multi-threading, saya bisa menangani notifikasi secara paralel, sehingga waktu respons lebih cepat dan pengalaman pengguna lebih baik.
