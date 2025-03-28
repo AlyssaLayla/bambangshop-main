@@ -87,7 +87,7 @@ This is the place for you to write reflections:
 
 3. When programming using Rust, we are enforced by rigorous compiler constraints to make a thread-safe program. In the case of the List of Subscribers (SUBSCRIBERS) static variable, we used the DashMap external library for thread safe HashMap. Explain based on your understanding of design patterns, do we still need DashMap or we can implement Singleton pattern instead?
 
-Menurut saya, DashMap tetap merupakan pilihan terbaik. DashMap memungkinkan operasi concurrent yang thread-safe, yang berarti beberapa thread bisa mengakses dan memodifikasi data secara bersamaan tanpa race condition.Sementara itu, Singleton Pattern hanya memastikan ada satu instance dari sebuah objek, tetapi tidak otomatis membuatnya aman untuk multi-threading. Kalau saya hanya menggunakan Singleton tanpa mekanisme tambahan seperti Mutex/RwLock, ada risiko race condition.Jadi, meskipun Singleton bisa digunakan, saya tetap perlu DashMap untuk memastikan thread safety dalam pengelolaan Subscriber
+- Menurut saya, DashMap tetap merupakan pilihan terbaik. DashMap memungkinkan operasi concurrent yang thread-safe, yang berarti beberapa thread bisa mengakses dan memodifikasi data secara bersamaan tanpa race condition.Sementara itu, Singleton Pattern hanya memastikan ada satu instance dari sebuah objek, tetapi tidak otomatis membuatnya aman untuk multi-threading. Kalau saya hanya menggunakan Singleton tanpa mekanisme tambahan seperti Mutex/RwLock, ada risiko race condition.Jadi, meskipun Singleton bisa digunakan, saya tetap perlu DashMap untuk memastikan thread safety dalam pengelolaan Subscriber
 
 #### Reflection Publisher-2
 
