@@ -58,12 +58,12 @@ You can install Postman via this website: https://www.postman.com/downloads/
     -   [x] Commit: `Implement delete function in Subscriber repository.`
     -   [x] Write answers of your learning module's "Reflection Publisher-1" questions in this README.
 -   **STAGE 2: Implement services and controllers**
-    -   [ ] Commit: `Create Notification service struct skeleton.`
-    -   [ ] Commit: `Implement subscribe function in Notification service.`
-    -   [ ] Commit: `Implement subscribe function in Notification controller.`
-    -   [ ] Commit: `Implement unsubscribe function in Notification service.`
-    -   [ ] Commit: `Implement unsubscribe function in Notification controller.`
-    -   [ ] Write answers of your learning module's "Reflection Publisher-2" questions in this README.
+    -   [x] Commit: `Create Notification service struct skeleton.`
+    -   [x] Commit: `Implement subscribe function in Notification service.`
+    -   [x] Commit: `Implement subscribe function in Notification controller.`
+    -   [x] Commit: `Implement unsubscribe function in Notification service.`
+    -   [x] Commit: `Implement unsubscribe function in Notification controller.`
+    -   [x] Write answers of your learning module's "Reflection Publisher-2" questions in this README.
 -   **STAGE 3: Implement notification mechanism**
     -   [ ] Commit: `Implement update method in Subscriber model to send notification HTTP requests.`
     -   [ ] Commit: `Implement notify function in Notification service to notify each Subscriber.`
@@ -90,5 +90,13 @@ This is the place for you to write reflections:
 - Menurut saya, DashMap tetap merupakan pilihan terbaik. DashMap memungkinkan operasi concurrent yang thread-safe, yang berarti beberapa thread bisa mengakses dan memodifikasi data secara bersamaan tanpa race condition.Sementara itu, Singleton Pattern hanya memastikan ada satu instance dari sebuah objek, tetapi tidak otomatis membuatnya aman untuk multi-threading. Kalau saya hanya menggunakan Singleton tanpa mekanisme tambahan seperti Mutex/RwLock, ada risiko race condition.Jadi, meskipun Singleton bisa digunakan, saya tetap perlu DashMap untuk memastikan thread safety dalam pengelolaan Subscriber
 
 #### Reflection Publisher-2
+1. In the Model-View Controller (MVC) compound pattern, there is no “Service” and “Repository”. Model in MVC covers both data storage and business logic. Explain based on your understanding of design principles, why we need to separate “Service” and “Repository” from a Model?
+- Dalam pola desain Model-View-Controller (MVC), Model biasanya mencakup data storage dan business logic, tetapi jika semua tanggung jawab ini dibebankan ke Model, kode akan sulit dikelola. Oleh karena itu, dalam implementasi BambangShop, saya memisahkan Service dan Repository dari Model agar kode lebih modular dan mudah diperluas. Repository hanya bertanggung jawab pada akses data, sementara Service menangani logika bisnis seperti proses subscribe dan unsubscribe. Dengan pemisahan ini, saya bisa melakukan perubahan pada cara penyimpanan data tanpa harus mengubah logika bisnis atau controller, sehingga sistem lebih fleksibel dan maintainable. Penerapan ini juga sesuai dengan prinsip Good Design.
+
+2. What happens if we only use the Model? Explain your imagination on how the interactions between each model (Program, Subscriber, Notification) affect the code complexity for each model?
+- Jika hanya menggunakan Model tanpa memisahkan Service dan Repository, kode akan menjadi lebih rumit karena Model akan menangani terlalu banyak hal. Dalam kasus BambangShop, jika Program, Subscriber, dan Notification langsung berinteraksi di dalam Model, setiap Model harus mengetahui detail Model lainnya. Hal ini akan menciptakan ketergantungan yang tinggi, sehingga ketika ada perubahan di satu Model, Model lainnya juga harus ikut diubah. Saya membayangkan bahwa tanpa pemisahan ini, setiap kali saya ingin menambahkan fitur baru, saya harus menyusun ulang banyak bagian dalam kode, yang akan memperlambat pengembangan dan meningkatkan risiko bug.
+
+3. Have you explored more about Postman? Tell us how this tool helps you to test your current work. You might want to also list which features in Postman you are interested in or feel like it is helpful to help your Group Project or any of your future software engineering projects.
+- Postman sangat membantu saya dalam menguji API BambangShop, terutama dalam memastikan fitur subscribe dan unsubscribe berjalan dengan benar. Postman dapat digunakan untuk menguji API melalui berbagai HTTP METHOD, salah dua yang paling familiar untuk saya adalah GET dan POST. Postman telah membantu saya mengerjakan projek - projek IT sebelum ini dan untuk masa depan juga karena praktis dan mudah digunakan.
 
 #### Reflection Publisher-3
